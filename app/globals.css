@@ -412,3 +412,50 @@ a {
 .location-links a:hover {
   color: var(--teal);
 }
+.mobile-menu-btn {
+  display: none;
+  background: var(--navy);
+  color: white;
+  border: none;
+  font-size: 1.6rem;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .header-inner {
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+  }
+
+  .mobile-menu-btn {
+    display: block;
+  }
+
+  .nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 20px;
+    right: 20px;
+    background: white;
+    border: 1px solid #e5eaf0;
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(15, 39, 71, 0.14);
+    padding: 18px;
+    z-index: 100;
+  }
+
+  .nav-open {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .nav a {
+    color: var(--navy);
+    font-weight: 700;
+  }
+}

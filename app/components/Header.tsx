@@ -1,6 +1,11 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 
 export default function Header() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <header className="site-header">
       <div className="header-inner">
@@ -14,11 +19,27 @@ export default function Header() {
           />
         </a>
 
-        <nav className="nav">
-          <a href="/#hire">Employers</a>
-          <a href="/#jobs">Job Seekers</a>
-          <a href="/#industries">Industries</a>
-          <a href="/#contact">Contact</a>
+        <button
+          className="mobile-menu-btn"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle navigation menu"
+        >
+          ☰
+        </button>
+
+        <nav className={`nav ${menuOpen ? "nav-open" : ""}`}>
+          <a href="/#hire" onClick={() => setMenuOpen(false)}>
+            Employers
+          </a>
+          <a href="/#jobs" onClick={() => setMenuOpen(false)}>
+            Job Seekers
+          </a>
+          <a href="/#industries" onClick={() => setMenuOpen(false)}>
+            Industries
+          </a>
+          <a href="/#contact" onClick={() => setMenuOpen(false)}>
+            Contact
+          </a>
         </nav>
       </div>
     </header>
