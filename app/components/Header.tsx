@@ -37,7 +37,7 @@ export default function Header() {
           <a href="/#industries" onClick={() => setMenuOpen(false)}>
             Industries
           </a>
-          <a href="/#contact" onClick={() => setMenuOpen(false)}>
+          <a href="/contact" onClick={() => setMenuOpen(false)}>
             Contact
           </a>
         </nav>

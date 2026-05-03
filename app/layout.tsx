@@ -1,6 +1,7 @@
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import "./globals.css";
+
 export const metadata = {
   title: "Labor Sync Group | Workforce Solutions",
   description:

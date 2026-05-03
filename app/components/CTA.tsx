@@ -1,7 +1,7 @@
 export default function CTA() {
   return (
     <>
-      {/* Job Seeker Section */}
+      {/* Job Seeker CTA */}
       <section
         id="jobs"
         className="job-seeker-section"
@@ -18,13 +18,13 @@ export default function CTA() {
         </p>
 
         <div style={{ textAlign: "center" }}>
-          <a href="#contact" className="btn-primary">
+          <a href="/apply" className="btn-primary">
             Apply Now
           </a>
         </div>
       </section>
 
-      {/* Final CTA */}
+      {/* Employer / Contact CTA */}
       <section id="contact" className="section">
         <p className="eyebrow center">CONTACT US</p>
 
@@ -38,10 +38,7 @@ export default function CTA() {
         </p>
 
         <div style={{ textAlign: "center" }}>
-          <a
-            href="mailto:info@laborsyncgroup.com"
-            className="btn-primary"
-          >
+          <a href="/contact" className="btn-primary">
             Contact Us
           </a>
         </div>

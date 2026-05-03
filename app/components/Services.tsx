@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Services() {
   const services = [
     {
@@ -18,19 +20,50 @@ export default function Services() {
     },
   ];
 
+  const industries = [
+    {
+      name: "Healthcare",
+      href: "/industries/healthcare-staffing",
+    },
+    {
+      name: "Skilled Trades",
+      href: "/industries/skilled-trades-staffing",
+    },
+    {
+      name: "Manufacturing",
+      href: "/industries/manufacturing-staffing",
+    },
+    {
+      name: "Logistics & Warehouse",
+      href: "/industries/logistics-warehouse-staffing",
+    },
+    {
+      name: "Construction Labor",
+      href: "/industries/construction-labor-staffing",
+    },
+  ];
+
   return (
     <>
       <section className="trust-bar">
-        <span>Healthcare</span>
-        <span>Skilled Trades</span>
-        <span>Manufacturing</span>
-        <span>Logistics & Warehouse</span>
-        <span>Construction Labor</span>
+        {industries.map((industry) => (
+          <Link
+            href={industry.href}
+            key={industry.name}
+            className="trust-link"
+          >
+            {industry.name}
+          </Link>
+        ))}
       </section>
 
       <section id="hire" className="section">
         <p className="eyebrow center">EMPLOYER SOLUTIONS</p>
-        <h2 className="section-title">Need dependable workers fast?</h2>
+
+        <h2 className="section-title">
+          Need dependable workers fast?
+        </h2>
+
         <p className="section-lead">
           Labor Sync Group helps employers fill critical roles with qualified
           candidates for temporary, temp-to-hire, direct hire, and project-based
