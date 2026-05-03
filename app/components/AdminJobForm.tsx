@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { createClient } from "@/lib/supabase/index";
+import { createClient } from "@/lib/supabase/client";
 
 function createSlug(title: string) {
   return title

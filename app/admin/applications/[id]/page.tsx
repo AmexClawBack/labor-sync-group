@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { createClient } from "@/lib/supabase/index";
+import { createClient } from "@/lib/supabase/client";
 import ApplicationStatusForm from "@/app/components/ApplicationStatusForm";
 import AdminNav from "@/app/components/AdminNav";
 

@@ -2,7 +2,7 @@
 
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
-import { createClient } from "@/lib/supabase/index";
+import { createClient } from "@/lib/supabase/client";
 
 export default function ApplyForm() {
   const searchParams = useSearchParams();

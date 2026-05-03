@@ -1,6 +1,7 @@
-import { createClient } from "@/lib/supabase/index";
+import { createClient } from "@/lib/supabase/client";
 import AdminLogoutButton from "@/app/components/AdminLogoutButton";
 import AdminNav from "@/app/components/AdminNav";
+
 export const metadata = {
   title: "Applications | Labor Sync Group",
 };

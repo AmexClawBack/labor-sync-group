@@ -1,5 +1,5 @@
 import PublicJobBoard from "@/app/components/PublicJobBoard";
-import { createClient } from "@/lib/supabase/index";
+import { createClient } from "@/lib/supabase/server";
 
 export const metadata = {
   title: "Jobs | Labor Sync Group",
@@ -8,7 +8,7 @@ export const metadata = {
 };
 
 export default async function JobsPage() {
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const { data: jobs, error } = await supabase
     .from("jobs")
