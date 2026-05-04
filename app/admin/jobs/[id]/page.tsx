@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { createClient } from "@/lib/supabase/server";
+import { createClient } from "@/lib/supabase/index";
 import JobActiveToggle from "@/app/components/JobActiveToggle";
 import AdminNav from "@/app/components/AdminNav";
 
@@ -10,8 +10,7 @@ export default async function AdminJobDetailPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const supabase = await createClient();
-
+const supabase = createClient();
   const { data: job } = await supabase
     .from("jobs")
     .select(`

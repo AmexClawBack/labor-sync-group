@@ -1,6 +1,6 @@
 import Link from "next/link";
 import AdminLogoutButton from "@/app/components/AdminLogoutButton";
-import { createClient } from "@/lib/supabase/server";
+import { createClient } from "@/lib/supabase/index";
 import AdminNav from "@/app/components/AdminNav";
 
 export const metadata = {
@@ -8,7 +8,7 @@ export const metadata = {
 };
 
 export default async function AdminJobsPage() {
-  const supabase = await createClient();
+  const supabase =  createClient();
 
   const { data: jobs, error } = await supabase
     .from("jobs")

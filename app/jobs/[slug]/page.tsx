@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
-import { createClient } from "@/lib/supabase/server";
-
+import { createClient } from "@/lib/supabase/index";
 type Props = {
   params: Promise<{
     slug: string;
@@ -9,8 +8,7 @@ type Props = {
 
 export default async function PublicJobPostingPage({ params }: Props) {
   const { slug } = await params;
-  const supabase = await createClient();
-
+const supabase = createClient();
   const { data: job } = await supabase
     .from("jobs")
     .select("*")
