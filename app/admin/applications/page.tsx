@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase/index";import AdminLogoutButton from "@/app/components/AdminLogoutButton";
+import { createClient } from "@/lib/supabase/index";
 import AdminNav from "@/app/components/AdminNav";
 
 export const metadata = {
@@ -12,6 +12,9 @@ export default async function AdminApplicationsPage() {
     .from("applications")
     .select("*")
     .order("created_at", { ascending: false });
+
+    console.log("APPLICATIONS:", applications);
+console.log("APPLICATIONS ERROR:", error);
 
   return (
     <main>
