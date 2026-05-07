@@ -19,14 +19,25 @@ export default function PublicJobBoard({ jobs }: { jobs: Job[] }) {
   const [states, setStates] = useState<string[]>([]);
   const [cities, setCities] = useState<string[]>([]);
   const [industries, setIndustries] = useState<string[]>([]);
+  const [showFilters, setShowFilters] = useState(false);
 
-  const stateOptions = [...new Set(jobs.map((job) => job.state).filter(Boolean))];
-  const cityOptions = [...new Set(jobs.map((job) => job.city).filter(Boolean))];
-  const industryOptions = [
-    ...new Set(jobs.map((job) => job.industry).filter(Boolean)),
-  ];
+  const stateOptions = [...new Set(
+    jobs.map((job) => job.state).filter(Boolean)
+  )];
 
-  function toggleFilter(value: string, list: string[], setList: any) {
+  const cityOptions = [...new Set(
+    jobs.map((job) => job.city).filter(Boolean)
+  )];
+
+  const industryOptions = [...new Set(
+    jobs.map((job) => job.industry).filter(Boolean)
+  )];
+
+  function toggleFilter(
+    value: string,
+    list: string[],
+    setList: React.Dispatch<React.SetStateAction<string[]>>
+  ) {
     if (list.includes(value)) {
       setList(list.filter((item) => item !== value));
     } else {
@@ -42,77 +53,96 @@ export default function PublicJobBoard({ jobs }: { jobs: Job[] }) {
         job.state?.toLowerCase().includes(search.toLowerCase()) ||
         job.industry?.toLowerCase().includes(search.toLowerCase());
 
-      const matchesState = states.length === 0 || states.includes(job.state);
-      const matchesCity = cities.length === 0 || cities.includes(job.city);
-      const matchesIndustry =
-        industries.length === 0 || industries.includes(job.industry);
+      const matchesState =
+        states.length === 0 ||
+        states.includes(job.state);
 
-      return matchesSearch && matchesState && matchesCity && matchesIndustry;
+      const matchesCity =
+        cities.length === 0 ||
+        cities.includes(job.city);
+
+      const matchesIndustry =
+        industries.length === 0 ||
+        industries.includes(job.industry);
+
+      return (
+        matchesSearch &&
+        matchesState &&
+        matchesCity &&
+        matchesIndustry
+      );
     });
   }, [jobs, search, states, cities, industries]);
 
   return (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "280px 1fr",
-        gap: "30px",
-        alignItems: "start",
-      }}
-    >
-      <aside className="card" style={{ position: "sticky", top: "90px" }}>
-        <h3>Search Jobs</h3>
-
-        <input
-          type="text"
-          placeholder="Search by title, city, industry..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          style={{
-            width: "100%",
-            padding: "12px",
-            marginBottom: "24px",
-            borderRadius: "8px",
-            border: "1px solid #ddd",
-          }}
-        />
-
-        <FilterGroup
-          title="State"
-          options={stateOptions}
-          selected={states}
-          onToggle={(value) => toggleFilter(value, states, setStates)}
-        />
-
-        <FilterGroup
-          title="City"
-          options={cityOptions}
-          selected={cities}
-          onToggle={(value) => toggleFilter(value, cities, setCities)}
-        />
-
-        <FilterGroup
-          title="Industry"
-          options={industryOptions}
-          selected={industries}
-          onToggle={(value) =>
-            toggleFilter(value, industries, setIndustries)
-          }
-        />
-
+    <div className="jobs-board-layout">
+      <aside className="jobs-filter-sidebar card">
         <button
           type="button"
-          className="btn-primary"
-          style={{ width: "100%", marginTop: "20px" }}
-          onClick={() => {
-            setSearch("");
-            setStates([]);
-            setCities([]);
-            setIndustries([]);
-          }}
+          className="job-filter-hamburger"
+          onClick={() => setShowFilters(!showFilters)}
         >
-          Clear Filters
+          ☰ Job Filters
         </button>
+
+        <div className={`filter-content ${showFilters ? "show" : ""}`}>
+          <h3>Search Jobs</h3>
+
+          <input
+            type="text"
+            placeholder="Search jobs..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+
+          <FilterGroup
+            title="State"
+            options={stateOptions}
+            selected={states}
+            onToggle={(value) =>
+              toggleFilter(value, states, setStates)
+            }
+          />
+
+          <FilterGroup
+            title="City"
+            options={cityOptions}
+            selected={cities}
+            onToggle={(value) =>
+              toggleFilter(value, cities, setCities)
+            }
+          />
+
+          <FilterGroup
+            title="Industry"
+            options={industryOptions}
+            selected={industries}
+            onToggle={(value) =>
+              toggleFilter(
+                value,
+                industries,
+                setIndustries
+              )
+            }
+          />
+
+          <button
+            type="button"
+            className="btn-primary"
+            style={{
+              width: "100%",
+              marginTop: "20px",
+            }}
+            onClick={() => {
+              setSearch("");
+              setStates([]);
+              setCities([]);
+              setIndustries([]);
+            }}
+          >
+            Clear Filters
+          </button>
+        </div>
       </aside>
 
       <div>
@@ -123,9 +153,9 @@ export default function PublicJobBoard({ jobs }: { jobs: Job[] }) {
         <div className="grid">
           {filteredJobs.map((job) => (
             <Link
+              key={job.id}
               href={`/jobs/${job.slug}`}
               className="card linked-card"
-              key={job.id}
             >
               <h3>{job.title}</h3>
 
@@ -147,7 +177,10 @@ export default function PublicJobBoard({ jobs }: { jobs: Job[] }) {
         {filteredJobs.length === 0 && (
           <div className="card">
             <h3>No jobs found</h3>
-            <p>Try removing a filter or searching a different keyword.</p>
+
+            <p>
+              Try adjusting your filters.
+            </p>
           </div>
         )}
       </div>
@@ -175,8 +208,8 @@ function FilterGroup({
           key={option}
           style={{
             display: "flex",
-            gap: "10px",
             alignItems: "center",
+            gap: "10px",
             marginBottom: "10px",
           }}
         >

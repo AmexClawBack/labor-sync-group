@@ -524,3 +524,162 @@ a {
 .trust-link:hover {
   opacity: 0.8;
 }
+
+.jobs-board-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 30px;
+  align-items: start;
+}
+
+.jobs-filter-sidebar {
+  position: sticky;
+  top: 90px;
+}
+
+.job-filter-hamburger {
+  display: none;
+  width: 100%;
+  padding: 14px 16px;
+  border: none;
+  border-radius: 8px;
+  background: #111827;
+  color: white;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.filter-content input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 24px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+@media (max-width: 768px) {
+  .jobs-board-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .jobs-filter-sidebar {
+    position: static;
+  }
+
+  .job-filter-hamburger {
+    display: block;
+  }
+
+  .filter-content {
+    display: none;
+  }
+
+  .filter-content.show {
+    display: block;
+  }
+
+  .jobs-board-layout .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+.jobs-board-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 30px;
+  align-items: start;
+}
+
+.jobs-filter-sidebar {
+  position: sticky;
+  top: 90px;
+}
+
+.job-filter-hamburger {
+  display: none;
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  background: #0b294b;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 14px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.filter-content input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 24px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+@media (max-width: 768px) {
+  .jobs-board-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .jobs-filter-sidebar {
+    position: static;
+  }
+
+  .job-filter-hamburger {
+    display: block;
+  }
+
+  .filter-content {
+    display: none;
+  }
+
+  .filter-content.show {
+    display: block;
+  }
+
+  .jobs-board-layout .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .jobs-filter-sidebar {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .filter-content {
+    width: 100%;
+  }
+
+  .filter-content h3,
+  .filter-content h4 {
+    text-align: left;
+  }
+
+  .filter-content label {
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    gap: 12px !important;
+    width: 100%;
+    text-align: left;
+  }
+
+  .filter-content input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+    flex-shrink: 0;
+  }
+
+  .filter-content input[type="text"] {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
