@@ -2,6 +2,7 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/index";
 import ApplicationStatusForm from "@/app/components/ApplicationStatusForm";
 import AdminNav from "@/app/components/AdminNav";
+import ResumeDownloadButton from "@/app/components/ResumeDownloadButton";
 
 export const dynamic = "force-dynamic";
 
@@ -15,6 +16,7 @@ export default async function ApplicationDetailPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
+
   const supabase = createClient();
 
   const { data: application, error } = await supabase
@@ -27,8 +29,12 @@ export default async function ApplicationDetailPage({
     return (
       <main>
         <AdminNav />
+
         <section className="section">
-          <Link href="/admin/applications">← Back to Applications</Link>
+          <Link href="/admin/applications">
+            ← Back to Applications
+          </Link>
+
           <p>Application not found.</p>
         </section>
       </main>
@@ -40,33 +46,61 @@ export default async function ApplicationDetailPage({
       <AdminNav />
 
       <section className="section">
-        <Link href="/admin/applications">← Back to Applications</Link>
+        <Link href="/admin/applications">
+          ← Back to Applications
+        </Link>
 
-        <h1 className="section-title">{application.full_name}</h1>
+        <h1 className="section-title">
+          {application.full_name}
+        </h1>
 
         <div className="card">
-          <p><strong>Email:</strong> {application.email}</p>
-          <p><strong>Phone:</strong> {application.phone}</p>
-          <p><strong>Industry:</strong> {application.industry}</p>
-          <p><strong>Experience:</strong> {application.experience}</p>
-          <p><strong>Certifications:</strong> {application.certifications}</p>
-          <p><strong>Applied For:</strong> {application.job_slug}</p>
-          <p><strong>Message:</strong> {application.message}</p>
+          <p>
+            <strong>Email:</strong> {application.email}
+          </p>
+
+          <p>
+            <strong>Phone:</strong> {application.phone}
+          </p>
+
+          <p>
+            <strong>Industry:</strong> {application.industry}
+          </p>
+
+          <p>
+            <strong>Experience:</strong> {application.experience || "Not provided"}
+          </p>
+
+          <p>
+            <strong>Certifications:</strong>{" "}
+            {application.certifications || "Not provided"}
+          </p>
+
+          <p>
+            <strong>Applied For:</strong>{" "}
+            {application.job_slug || "General Resume Submission"}
+          </p>
+
+          <p>
+            <strong>Message:</strong>{" "}
+            {application.message || "No message provided"}
+          </p>
 
           {application.resume_url && (
-            <p>
-              <strong>Resume:</strong>{" "}
-              <a
-                href={`https://nuyhxuzkamaoastxmrlk.supabase.co/storage/v1/object/resumes/${application.resume_url}`}
-                target="_blank"
-              >
-                {application.resume_file_name || "View Resume"}
-              </a>
-            </p>
+            <div style={{ marginTop: "25px" }}>
+              <ResumeDownloadButton
+                resumePath={application.resume_url}
+                fileName={
+                  application.resume_file_name || "Resume"
+                }
+              />
+            </div>
           )}
         </div>
 
-        <h2 style={{ marginTop: "40px" }}>Application Status</h2>
+        <h2 style={{ marginTop: "40px" }}>
+          Application Status
+        </h2>
 
         <ApplicationStatusForm
           applicationId={application.id}

@@ -49,6 +49,14 @@ export default function AdminNav() {
           Applications
         </Link>
 
+        <Link href="/admin/employers" style={navLink}>
+  Employers
+</Link>
+
+<Link href="/admin/staffed-workers" style={navLink}>
+  Staffed Workers
+</Link>
+
         <AdminLogoutButton />
       </nav>
     </div>

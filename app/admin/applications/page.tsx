@@ -1,5 +1,8 @@
+import Link from "next/link";
 import { createClient } from "@/lib/supabase/index";
 import AdminNav from "@/app/components/AdminNav";
+
+export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: "Applications | Labor Sync Group",
@@ -13,19 +16,13 @@ export default async function AdminApplicationsPage() {
     .select("*")
     .order("created_at", { ascending: false });
 
-    console.log("APPLICATIONS:", applications);
-console.log("APPLICATIONS ERROR:", error);
-
   return (
     <main>
       <AdminNav />
+
       <section className="section">
         <p className="eyebrow center">ADMIN</p>
-
-        <h1 className="section-title">
-          Candidate Applications
-        </h1>
-       
+        <h1 className="section-title">Candidate Applications</h1>
 
         {error && (
           <p style={{ color: "red" }}>
@@ -34,8 +31,13 @@ console.log("APPLICATIONS ERROR:", error);
         )}
 
         <div className="grid">
-          {applications?.map((app) => (
-            <div className="card" key={app.id}>
+          {applications?.map((app: any) => (
+            <Link
+              href={`/admin/applications/${app.id}`}
+              className="card linked-card"
+              key={app.id}
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
               <h3>{app.full_name}</h3>
 
               <p>
@@ -51,23 +53,21 @@ console.log("APPLICATIONS ERROR:", error);
               </p>
 
               <p>
-                <strong>Experience:</strong> {app.experience}
-              </p>
-
-              <p>
-                <strong>Certifications:</strong> {app.certifications}
-              </p>
-
-              <p>
                 <strong>Applied For:</strong> {app.job_slug}
               </p>
 
-              {app.message && (
+              <p>
+                <strong>Status:</strong> {app.status || "New"}
+              </p>
+
+              {app.resume_file_name && (
                 <p>
-                  <strong>Notes:</strong> {app.message}
+                  <strong>Resume:</strong> {app.resume_file_name}
                 </p>
               )}
-            </div>
+
+              <span>View Application →</span>
+            </Link>
           ))}
         </div>
       </section>

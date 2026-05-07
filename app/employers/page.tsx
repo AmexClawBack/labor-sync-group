@@ -1,3 +1,5 @@
+import EmployerRequestForm from "@/app/components/EmployerRequestForm";
+
 export const metadata = {
   title: "Request Talent | Labor Sync Group",
   description:
@@ -21,44 +23,7 @@ export default function EmployersPage() {
       </section>
 
       <section className="section">
-        <form className="lead-form">
-          <input type="text" placeholder="Company Name" />
-
-          <input type="text" placeholder="Contact Name" />
-
-          <input type="email" placeholder="Email Address" />
-
-          <input type="tel" placeholder="Phone Number" />
-
-          <select>
-            <option>Select Industry</option>
-            <option>Healthcare</option>
-            <option>Skilled Trades</option>
-            <option>Manufacturing</option>
-            <option>Logistics & Warehouse</option>
-            <option>Construction Labor</option>
-          </select>
-
-          <input type="text" placeholder="Positions Needed" />
-
-          <input type="text" placeholder="Number of Workers Needed" />
-
-          <select>
-            <option>Hiring Type</option>
-            <option>Temporary</option>
-            <option>Temp-to-Hire</option>
-            <option>Direct Hire</option>
-          </select>
-
-          <textarea
-            rows={5}
-            placeholder="Tell us about your staffing needs..."
-          />
-
-          <button type="submit" className="btn-primary form-btn">
-            Submit Request
-          </button>
-        </form>
+        <EmployerRequestForm />
       </section>
     </main>
   );
