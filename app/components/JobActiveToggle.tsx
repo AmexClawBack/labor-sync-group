@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { createClient } from "@/lib/supabase/client";
+import { createClient } from "@/lib/supabase/index";
+import { useRouter } from "next/navigation";
 
 export default function JobActiveToggle({
   jobId,
@@ -11,13 +12,15 @@ export default function JobActiveToggle({
   initialActive: boolean;
 }) {
   const supabase = createClient();
+  const router = useRouter();
+
   const [active, setActive] = useState(initialActive);
   const [loading, setLoading] = useState(false);
 
   async function handleToggle() {
-    setLoading(true);
-
     const newStatus = !active;
+
+    setLoading(true);
 
     const { error } = await supabase
       .from("jobs")
@@ -32,18 +35,12 @@ export default function JobActiveToggle({
     }
 
     setActive(newStatus);
+    alert(`Job marked as ${newStatus ? "Active" : "Inactive"}.`);
+    router.refresh();
   }
 
   return (
-    <label
-      style={{
-        display: "flex",
-        alignItems: "center",
-        gap: "12px",
-        margin: "20px 0",
-        cursor: "pointer",
-      }}
-    >
+    <label style={{ display: "flex", gap: "10px", alignItems: "center" }}>
       <input
         type="checkbox"
         checked={active}
@@ -51,7 +48,7 @@ export default function JobActiveToggle({
         disabled={loading}
       />
 
-      <span>{active ? "Active" : "Inactive"}</span>
+      {active ? "Active" : "Inactive"}
     </label>
   );
 }

@@ -2,7 +2,9 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/index";
 import JobActiveToggle from "@/app/components/JobActiveToggle";
 import AdminNav from "@/app/components/AdminNav";
+import AdminJobEditForm from "@/app/components/AdminJobEditForm";
 
+export const dynamic = "force-dynamic";
 
 export default async function AdminJobDetailPage({
   params,
@@ -10,8 +12,10 @@ export default async function AdminJobDetailPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-const supabase = createClient();
-  const { data: job } = await supabase
+
+  const supabase = createClient();
+
+  const { data: job, error } = await supabase
     .from("jobs")
     .select(`
       *,
@@ -20,10 +24,11 @@ const supabase = createClient();
     .eq("id", id)
     .maybeSingle();
 
-  if (!job) {
+  if (error || !job) {
     return (
       <main>
         <AdminNav />
+
         <section className="section">
           <Link href="/admin/jobs">← Back to Jobs</Link>
           <p>Job not found.</p>
@@ -34,18 +39,34 @@ const supabase = createClient();
 
   return (
     <main>
+      <AdminNav />
+
       <section className="section">
         <Link href="/admin/jobs">← Back to Jobs</Link>
 
         <h1 className="section-title">{job.title}</h1>
 
         <div className="card">
-          <p><strong>Location:</strong> {job.city}, {job.state}</p>
-          <p><strong>Industry:</strong> {job.industry}</p>
-          <p><strong>Pay:</strong> {job.pay_range}</p>
-          <p><strong>Job Type:</strong> {job.job_type}</p>
+          <p>
+            <strong>Location:</strong> {job.city}, {job.state}
+          </p>
 
-          <JobActiveToggle jobId={job.id} initialActive={job.is_active} />
+          <p>
+            <strong>Industry:</strong> {job.industry}
+          </p>
+
+          <p>
+            <strong>Pay:</strong> {job.pay_range}
+          </p>
+
+          <p>
+            <strong>Job Type:</strong> {job.job_type}
+          </p>
+
+          <JobActiveToggle
+            jobId={job.id}
+            initialActive={job.is_active}
+          />
 
           <p>
             <strong>Total Applications:</strong>{" "}
@@ -53,20 +74,38 @@ const supabase = createClient();
           </p>
         </div>
 
-        <h2 style={{ marginTop: "40px" }}>Applications</h2>
+        <h2 style={{ marginTop: "40px" }}>
+          Edit Job Posting
+        </h2>
+
+        <AdminJobEditForm job={job} />
+
+        <h2 style={{ marginTop: "40px" }}>
+          Applications
+        </h2>
 
         <div className="grid">
           {job.applications?.map((application: any) => (
             <Link
               key={application.id}
               href={`/admin/applications/${application.id}`}
-              className="card"
+              className="card linked-card"
               style={{ textDecoration: "none", color: "inherit" }}
             >
               <h3>{application.full_name}</h3>
-              <p><strong>Email:</strong> {application.email}</p>
-              <p><strong>Phone:</strong> {application.phone}</p>
-              <p><strong>Status:</strong> {application.status || "New"}</p>
+
+              <p>
+                <strong>Email:</strong> {application.email}
+              </p>
+
+              <p>
+                <strong>Phone:</strong> {application.phone}
+              </p>
+
+              <p>
+                <strong>Status:</strong>{" "}
+                {application.status || "New"}
+              </p>
             </Link>
           ))}
         </div>
