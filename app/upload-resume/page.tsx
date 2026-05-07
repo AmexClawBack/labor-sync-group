@@ -2,26 +2,29 @@ import { Suspense } from "react";
 import ApplyForm from "@/app/components/ApplyForm";
 
 export const metadata = {
-  title: "Apply for Jobs | Labor Sync Group",
+  title: "Upload Resume | Labor Sync Group",
   description:
-    "Apply for jobs and upload your resume with Labor Sync Group.",
+    "Upload your resume to be considered for healthcare, skilled trades, logistics, manufacturing, and construction jobs.",
 };
 
-export default function ApplyPage() {
+export default function UploadResumePage() {
   return (
     <main>
       <section className="industry-hero logistics-bg">
         <div className="industry-overlay">
           <p className="eyebrow">JOB SEEKERS</p>
-          <h1>Apply for Work</h1>
+
+          <h1>Upload Your Resume</h1>
+
           <p className="industry-lead">
-            Submit your application and upload your resume for review.
+            Submit your resume to be added to our talent pool for current and
+            future job opportunities.
           </p>
         </div>
       </section>
 
       <section className="section">
-        <Suspense fallback={<p>Loading application form...</p>}>
+        <Suspense fallback={<p>Loading resume form...</p>}>
           <ApplyForm />
         </Suspense>
       </section>

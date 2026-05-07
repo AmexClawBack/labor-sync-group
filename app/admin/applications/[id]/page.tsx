@@ -76,6 +76,18 @@ export default async function ApplicationDetailPage({
           initialNotes={application.admin_notes}
         />
       </section>
+
+      {application.resume_url && (
+  <p>
+    <strong>Resume:</strong>{" "}
+    <a
+      href={`https://nuyhxuzkamaoastxmrlk.supabase.co/storage/v1/object/resumes/${application.resume_url}`}
+      target="_blank"
+    >
+      {application.resume_file_name || "View Resume"}
+    </a>
+  </p>
+)}
       
     </main>
     

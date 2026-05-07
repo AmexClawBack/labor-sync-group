@@ -9,17 +9,18 @@ export default function CTA() {
         <p className="eyebrow center">JOB SEEKERS</p>
 
         <h2 className="section-title white-text">
-          Looking for Your Next Opportunity?
+          Upload Your Resume for Future Opportunities
         </h2>
 
         <p className="section-lead white-text">
-          Labor Sync Group connects candidates with opportunities in healthcare,
-          skilled trades, manufacturing, logistics, and construction.
+          Join the Labor Sync Group talent network by submitting your resume for
+          healthcare, skilled trades, manufacturing, logistics, and construction
+          opportunities.
         </p>
 
         <div style={{ textAlign: "center" }}>
           <a href="/apply" className="btn-primary">
-            Apply Now
+            Upload Resume
           </a>
         </div>
       </section>

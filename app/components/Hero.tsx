@@ -25,7 +25,7 @@ export default function Hero() {
   Request Talent
 </a>
 
-<a href="/apply" className="btn-secondary">
+<a href="/jobs" className="btn-secondary">
   Find Work
 </a>
         </div>
