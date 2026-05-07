@@ -28,13 +28,13 @@ export default function Header() {
         </button>
 
         <nav className={`nav ${menuOpen ? "nav-open" : ""}`}>
-          <a href="/#hire" onClick={() => setMenuOpen(false)}>
+          <a href="/employers" onClick={() => setMenuOpen(false)}>
             Employers
           </a>
-          <a href="/#jobs" onClick={() => setMenuOpen(false)}>
+          <a href="/jobs" onClick={() => setMenuOpen(false)}>
             Job Seekers
           </a>
-          <a href="/#industries" onClick={() => setMenuOpen(false)}>
+          <a href="/industries" onClick={() => setMenuOpen(false)}>
             Industries
           </a>
           <a href="/contact" onClick={() => setMenuOpen(false)}>
