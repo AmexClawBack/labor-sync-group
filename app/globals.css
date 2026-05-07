@@ -683,3 +683,61 @@ a {
     box-sizing: border-box;
   }
 }
+
+
+.hero-healthcare {
+  background-image: url("/hero-healthcare.jpg");
+}
+
+.hero-trades {
+  background-image: url("/hero-trades.jpg");
+}
+
+.hero-manufacturing {
+  background-image: url("/hero-manufacturing.jpg");
+}
+
+.hero-logistics {
+  background-image: url("/hero-logistics.jpg");
+}
+
+.hero-construction {
+  background-image: url("/hero-construction.jpg");
+}
+
+
+/* Desktop job board filter alignment */
+@media (min-width: 769px) {
+  .filter-content label {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 10px !important;
+    width: 100%;
+    text-align: left;
+  }
+
+  .filter-content input[type="checkbox"] {
+    width: auto !important;
+    margin: 0 !important;
+    flex-shrink: 0;
+  }
+}
+
+/* Mobile job board filter alignment */
+@media (max-width: 768px) {
+  .filter-content label {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 12px !important;
+    width: 100%;
+    text-align: left;
+  }
+
+  .filter-content input[type="checkbox"] {
+    width: auto !important;
+    margin: 0 !important;
+    flex-shrink: 0;
+  }
+}

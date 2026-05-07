@@ -1,14 +1,49 @@
 import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/index";
+
 type Props = {
   params: Promise<{
     slug: string;
   }>;
 };
 
-export default async function PublicJobPostingPage({ params }: Props) {
+function getHeroClass(industry: string) {
+  const normalized = industry?.toLowerCase() || "";
+
+  if (normalized.includes("healthcare")) {
+    return "hero-healthcare";
+  }
+
+  if (normalized.includes("skilled")) {
+    return "hero-trades";
+  }
+
+  if (normalized.includes("manufacturing")) {
+    return "hero-manufacturing";
+  }
+
+  if (normalized.includes("logistics")) {
+    return "hero-logistics";
+  }
+
+  if (normalized.includes("warehouse")) {
+    return "hero-logistics";
+  }
+
+  if (normalized.includes("construction")) {
+    return "hero-construction";
+  }
+
+  return "hero-logistics";
+}
+
+export default async function PublicJobPostingPage({
+  params,
+}: Props) {
   const { slug } = await params;
-const supabase = createClient();
+
+  const supabase = createClient();
+
   const { data: job } = await supabase
     .from("jobs")
     .select("*")
@@ -22,7 +57,11 @@ const supabase = createClient();
 
   return (
     <main>
-      <section className="industry-hero healthcare-bg">
+      <section
+        className={`industry-hero ${getHeroClass(
+          job.industry
+        )}`}
+      >
         <div className="industry-overlay">
           <p className="eyebrow">NOW HIRING</p>
 
@@ -35,9 +74,13 @@ const supabase = createClient();
       </section>
 
       <section className="section">
-        <h2 className="section-title">Job Description</h2>
+        <h2 className="section-title">
+          Job Description
+        </h2>
 
-        <p className="section-lead">{job.description}</p>
+        <p className="section-lead">
+          {job.description}
+        </p>
 
         <div className="grid">
           <div className="card">
@@ -58,7 +101,9 @@ const supabase = createClient();
       </section>
 
       <section className="job-seeker-section">
-        <p className="eyebrow center">READY TO APPLY?</p>
+        <p className="eyebrow center">
+          READY TO APPLY?
+        </p>
 
         <h2 className="section-title white-text">
           Start Your Application Today
