@@ -1,3 +1,7 @@
+/* =======================================================
+   1. GLOBAL THEME VARIABLES
+======================================================= */
+
 :root {
   --navy: #0f2747;
   --teal: #00a99d;
@@ -5,6 +9,10 @@
   --light: #f6f9fb;
   --white: #ffffff;
 }
+
+/* =======================================================
+   2. GLOBAL RESET / BASE STYLES
+======================================================= */
 
 * {
   box-sizing: border-box;
@@ -20,6 +28,10 @@ body {
 a {
   text-decoration: none;
 }
+
+/* =======================================================
+   3. GENERAL LAYOUT SECTIONS
+======================================================= */
 
 .section {
   padding: 80px 20px;
@@ -47,6 +59,24 @@ a {
   line-height: 1.6;
 }
 
+.center {
+  text-align: center;
+}
+
+.white-text {
+  color: white !important;
+}
+
+.eyebrow {
+  color: var(--teal);
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+/* =======================================================
+   4. GRID + CARDS
+======================================================= */
+
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -61,6 +91,25 @@ a {
   box-shadow: 0 10px 25px rgba(15, 39, 71, 0.07);
 }
 
+.linked-card {
+  color: inherit;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.linked-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 35px rgba(15, 39, 71, 0.12);
+}
+
+.linked-card span {
+  color: var(--teal);
+  font-weight: 700;
+}
+
+/* =======================================================
+   5. BUTTONS
+======================================================= */
+
 .btn-primary {
   display: inline-block;
   background: var(--teal);
@@ -68,6 +117,8 @@ a {
   padding: 15px 30px;
   border-radius: 8px;
   font-weight: bold;
+  border: none;
+  cursor: pointer;
 }
 
 .btn-secondary {
@@ -77,7 +128,18 @@ a {
   padding: 15px 30px;
   border-radius: 8px;
   font-weight: bold;
+  border: none;
+  cursor: pointer;
 }
+
+.form-btn {
+  border: none;
+  cursor: pointer;
+}
+
+/* =======================================================
+   6. SITE HEADER / DESKTOP NAV
+======================================================= */
 
 .site-header {
   background: white;
@@ -96,74 +158,6 @@ a {
   align-items: center;
 }
 
-.logo {
-  font-weight: 800;
-  color: var(--navy);
-  font-size: 1.2rem;
-}
-
-.nav {
-  display: flex;
-  gap: 24px;
-}
-
-.nav a {
-  color: var(--charcoal);
-  font-weight: 600;
-}
-
-.footer {
-  background: var(--navy);
-  color: white;
-  text-align: center;
-  padding: 30px 20px;
-}
-
-.hero {
-  min-height: 80vh;
-  background-image: url("/hero.jpg");
-  background-size: cover;
-  background-position: center;
-  position: relative;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.hero-overlay {
-  background: rgba(15, 39, 71, 0.8);
-  color: white;
-  padding: 80px 20px;
-  text-align: center;
-  width: 100%;
-}
-
-.hero h1 {
-  font-size: 3rem;
-  max-width: 900px;
-  margin: 20px auto;
-}
-
-.hero-lead {
-  max-width: 700px;
-  margin: 0 auto 35px;
-  font-size: 1.2rem;
-}
-
-.eyebrow {
-  color: var(--teal);
-  font-weight: bold;
-  letter-spacing: 2px;
-}
-
-.hero-actions {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  flex-wrap: wrap;
-}
-
 .logo-wrap {
   display: flex;
   align-items: center;
@@ -174,22 +168,117 @@ a {
   width: 220px;
 }
 
+.logo {
+  font-weight: 800;
+  color: var(--navy);
+  font-size: 1.2rem;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 34px;
+}
+
+.nav a {
+  color: var(--charcoal);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+/* Upload Resume button in nav */
+.resume-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  padding: 0 28px;
+  background: var(--teal);
+  color: white !important;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 15px;
+  transition: 0.2s ease;
+  white-space: nowrap;
+  line-height: 1;
+  margin-left: 8px;
+}
+
+.resume-nav-btn:hover {
+  transform: translateY(-1px);
+  opacity: 0.95;
+}
+
+/* =======================================================
+   7. MOBILE HEADER / MOBILE NAV
+======================================================= */
+
+.mobile-menu-btn {
+  display: none;
+  background: var(--navy);
+  color: white;
+  border: none;
+  font-size: 1.6rem;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
 @media (max-width: 768px) {
   .header-inner {
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  .nav {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
   }
 
   .logo-wrap img {
     width: 190px;
   }
+
+  .mobile-menu-btn {
+    display: block;
+  }
+
+  .nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 20px;
+    right: 20px;
+    background: white;
+    border: 1px solid #e5eaf0;
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(15, 39, 71, 0.14);
+    padding: 18px;
+    z-index: 100;
+  }
+
+  .nav-open {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .nav a {
+    color: var(--navy);
+    font-weight: 700;
+  }
+
+  .resume-nav-btn {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    margin-left: 0;
+    display: flex;
+  }
 }
+
+/* =======================================================
+   8. HOMEPAGE HERO SLIDER
+======================================================= */
 
 .hero-slider {
   min-height: 85vh;
@@ -229,7 +318,7 @@ a {
   animation-delay: 9s;
 }
 
-.slide-45{
+.slide-5 {
   background-image: url("/hero-manufacturing.jpg");
   animation-delay: 12s;
 }
@@ -275,15 +364,19 @@ a {
   0% {
     opacity: 0;
   }
+
   8% {
     opacity: 1;
   }
+
   33% {
     opacity: 1;
   }
+
   41% {
     opacity: 0;
   }
+
   100% {
     opacity: 0;
   }
@@ -297,59 +390,20 @@ a {
   .hero-lead {
     font-size: 1rem;
   }
-
-}
-.trust-bar {
-  display: flex;
-  justify-content: center;
-  gap: 25px;
-  flex-wrap: wrap;
-  padding: 22px 20px;
-  background: var(--teal);
-  color: white;
-  font-weight: 700;
 }
 
-.center {
-  text-align: center;
-}
-.job-seeker-section {
-  background: var(--navy);
-  color: white;
-  padding: 90px 20px;
-}
-
-.white-text {
-  color: white !important;
-}
-.linked-card {
-  color: inherit;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.linked-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 14px 35px rgba(15, 39, 71, 0.12);
-}
-
-.linked-card span {
-  color: var(--teal);
-  font-weight: 700;
-}
+/* =======================================================
+   9. INDUSTRY HERO SECTIONS
+======================================================= */
 
 .industry-hero {
   min-height: 65vh;
   position: relative;
   background-size: cover;
   background-position: center;
-
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.healthcare-bg {
-  background-image: url("/hero-healthcare.jpg");
 }
 
 .industry-overlay {
@@ -364,25 +418,76 @@ a {
   max-width: 700px;
   margin: 20px auto 35px;
 }
-.trades-bg {
+
+/* Industry hero background options */
+.healthcare-bg,
+.hero-healthcare {
+  background-image: url("/hero-healthcare.jpg");
+}
+
+.trades-bg,
+.hero-trades {
   background-image: url("/hero-trades.jpg");
 }
 
-.manufacturing-bg {
+.manufacturing-bg,
+.hero-manufacturing {
   background-image: url("/hero-manufacturing.jpg");
 }
 
-.logistics-bg {
+.logistics-bg,
+.hero-logistics {
   background-image: url("/hero-logistics.jpg");
 }
 
-.construction-bg {
+.construction-bg,
+.hero-construction {
   background-image: url("/hero-construction.jpg");
 }
+
+/* =======================================================
+   10. TRUST BAR
+======================================================= */
+
+.trust-bar {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+  padding: 22px 20px;
+  background: var(--teal);
+  color: white;
+  font-weight: 700;
+}
+
+.trust-link {
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+  transition: 0.2s ease;
+}
+
+.trust-link:hover {
+  opacity: 0.8;
+}
+
+/* =======================================================
+   11. JOB SEEKER CTA SECTION
+======================================================= */
+
+.job-seeker-section {
+  background: var(--navy);
+  color: white;
+  padding: 90px 20px;
+}
+
+/* =======================================================
+   12. FORMS
+======================================================= */
+
 .lead-form {
   max-width: 800px;
   margin: 0 auto;
-
   display: flex;
   flex-direction: column;
   gap: 18px;
@@ -398,10 +503,10 @@ a {
   font-size: 1rem;
 }
 
-.form-btn {
-  border: none;
-  cursor: pointer;
-}
+/* =======================================================
+   13. LOCATION PAGES
+======================================================= */
+
 .location-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -422,53 +527,144 @@ a {
 .location-links a:hover {
   color: var(--teal);
 }
-.mobile-menu-btn {
-  display: none;
-  background: var(--navy);
-  color: white;
-  border: none;
-  font-size: 1.6rem;
-  padding: 8px 14px;
-  border-radius: 8px;
-  cursor: pointer;
+
+/* =======================================================
+   14. PUBLIC JOB BOARD
+======================================================= */
+
+.jobs-board-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 30px;
+  align-items: start;
 }
 
-@media (max-width: 768px) {
-  .header-inner {
-    flex-direction: row;
-    align-items: center;
-    position: relative;
+.jobs-filter-sidebar {
+  position: sticky;
+  top: 90px;
+}
+
+.job-filter-hamburger {
+  display: none;
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  background: var(--navy);
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 14px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.filter-content input[type="text"] {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 24px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+/* Desktop filter checkbox alignment */
+@media (min-width: 769px) {
+  .filter-content label {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 10px !important;
+    width: 100%;
+    text-align: left;
   }
 
-  .mobile-menu-btn {
+  .filter-content input[type="checkbox"] {
+    width: auto !important;
+    margin: 0 !important;
+    flex-shrink: 0;
+  }
+}
+
+/* Mobile job board layout */
+@media (max-width: 768px) {
+  .jobs-board-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .jobs-filter-sidebar {
+    position: static;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .job-filter-hamburger {
     display: block;
   }
 
-  .nav {
+  .filter-content {
     display: none;
-    position: absolute;
-    top: 100%;
-    left: 20px;
-    right: 20px;
-    background: white;
-    border: 1px solid #e5eaf0;
-    border-radius: 12px;
-    box-shadow: 0 12px 30px rgba(15, 39, 71, 0.14);
-    padding: 18px;
-    z-index: 100;
+    width: 100%;
   }
 
-  .nav-open {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+  .filter-content.show {
+    display: block;
   }
 
-  .nav a {
-    color: var(--navy);
-    font-weight: 700;
+  .filter-content h3,
+  .filter-content h4 {
+    text-align: left;
+  }
+
+  .filter-content label {
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    gap: 12px !important;
+    width: 100%;
+    text-align: left;
+  }
+
+  .filter-content input[type="checkbox"] {
+    width: auto !important;
+    margin: 0 !important;
+    flex-shrink: 0;
+  }
+
+  .filter-content input[type="text"] {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .jobs-board-layout .grid {
+    grid-template-columns: 1fr;
   }
 }
+
+/* =======================================================
+   15. RESUME CTA BLOCKS
+======================================================= */
+
+.resume-cta {
+  text-align: center;
+  margin-top: 40px;
+  padding: 40px 30px;
+}
+
+.resume-cta h3 {
+  margin-bottom: 16px;
+}
+
+.resume-cta p {
+  margin-bottom: 24px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* =======================================================
+   16. FOOTER
+======================================================= */
+
 .site-footer {
   background: var(--navy);
   color: white;
@@ -478,7 +674,6 @@ a {
 .footer-grid {
   max-width: 1300px;
   margin: 0 auto;
-
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 40px;
@@ -507,237 +702,10 @@ a {
   max-width: 1300px;
   margin: 50px auto 0;
   padding-top: 20px;
-  border-top: 1px solid rgba(255,255,255,0.12);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .footer-bottom p {
   color: #b8c5d3;
   font-size: 0.95rem;
-}
-.trust-link {
-  color: white;
-  text-decoration: none;
-  font-weight: 700;
-  transition: 0.2s ease;
-}
-
-.trust-link:hover {
-  opacity: 0.8;
-}
-
-.jobs-board-layout {
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 30px;
-  align-items: start;
-}
-
-.jobs-filter-sidebar {
-  position: sticky;
-  top: 90px;
-}
-
-.job-filter-hamburger {
-  display: none;
-  width: 100%;
-  padding: 14px 16px;
-  border: none;
-  border-radius: 8px;
-  background: #111827;
-  color: white;
-  font-weight: 700;
-  font-size: 16px;
-  cursor: pointer;
-  margin-bottom: 20px;
-}
-
-.filter-content input {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 24px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-}
-
-@media (max-width: 768px) {
-  .jobs-board-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .jobs-filter-sidebar {
-    position: static;
-  }
-
-  .job-filter-hamburger {
-    display: block;
-  }
-
-  .filter-content {
-    display: none;
-  }
-
-  .filter-content.show {
-    display: block;
-  }
-
-  .jobs-board-layout .grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-
-.jobs-board-layout {
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 30px;
-  align-items: start;
-}
-
-.jobs-filter-sidebar {
-  position: sticky;
-  top: 90px;
-}
-
-.job-filter-hamburger {
-  display: none;
-  width: 100%;
-  border: none;
-  border-radius: 10px;
-  background: #0b294b;
-  color: white;
-  font-size: 16px;
-  font-weight: 700;
-  padding: 14px;
-  cursor: pointer;
-  margin-bottom: 20px;
-}
-
-.filter-content input {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 24px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-}
-
-@media (max-width: 768px) {
-  .jobs-board-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .jobs-filter-sidebar {
-    position: static;
-  }
-
-  .job-filter-hamburger {
-    display: block;
-  }
-
-  .filter-content {
-    display: none;
-  }
-
-  .filter-content.show {
-    display: block;
-  }
-
-  .jobs-board-layout .grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-
-@media (max-width: 768px) {
-  .jobs-filter-sidebar {
-    width: 100%;
-    padding: 20px;
-    box-sizing: border-box;
-  }
-
-  .filter-content {
-    width: 100%;
-  }
-
-  .filter-content h3,
-  .filter-content h4 {
-    text-align: left;
-  }
-
-  .filter-content label {
-    display: flex !important;
-    justify-content: flex-start !important;
-    align-items: center !important;
-    gap: 12px !important;
-    width: 100%;
-    text-align: left;
-  }
-
-  .filter-content input[type="checkbox"] {
-    width: auto;
-    margin: 0;
-    flex-shrink: 0;
-  }
-
-  .filter-content input[type="text"] {
-    width: 100%;
-    box-sizing: border-box;
-  }
-}
-
-
-.hero-healthcare {
-  background-image: url("/hero-healthcare.jpg");
-}
-
-.hero-trades {
-  background-image: url("/hero-trades.jpg");
-}
-
-.hero-manufacturing {
-  background-image: url("/hero-manufacturing.jpg");
-}
-
-.hero-logistics {
-  background-image: url("/hero-logistics.jpg");
-}
-
-.hero-construction {
-  background-image: url("/hero-construction.jpg");
-}
-
-
-/* Desktop job board filter alignment */
-@media (min-width: 769px) {
-  .filter-content label {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: flex-start !important;
-    gap: 10px !important;
-    width: 100%;
-    text-align: left;
-  }
-
-  .filter-content input[type="checkbox"] {
-    width: auto !important;
-    margin: 0 !important;
-    flex-shrink: 0;
-  }
-}
-
-/* Mobile job board filter alignment */
-@media (max-width: 768px) {
-  .filter-content label {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: flex-start !important;
-    gap: 12px !important;
-    width: 100%;
-    text-align: left;
-  }
-
-  .filter-content input[type="checkbox"] {
-    width: auto !important;
-    margin: 0 !important;
-    flex-shrink: 0;
-  }
 }

@@ -183,6 +183,23 @@ export default function PublicJobBoard({ jobs }: { jobs: Job[] }) {
             </p>
           </div>
         )}
+
+        {/* Resume CTA */}
+        <div className="resume-cta card">
+          <h3>Don’t See the Right Opportunity?</h3>
+
+          <p>
+            Upload your resume for future opportunities in healthcare,
+            skilled trades, manufacturing, logistics, and construction.
+          </p>
+
+          <a
+            href="/apply"
+            className="resume-nav-btn"
+          >
+            Upload Resume
+          </a>
+        </div>
       </div>
     </div>
   );

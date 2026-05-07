@@ -40,6 +40,12 @@ export default function Header() {
           <a href="/contact" onClick={() => setMenuOpen(false)}>
             Contact
           </a>
+          <a
+  href="/apply"
+  className="resume-nav-btn"
+>
+  Upload Resume
+</a>
         </nav>
       </div>
     </header>
