@@ -4,6 +4,10 @@ export default function Hero() {
       <div className="hero-slide slide-1"></div>
       <div className="hero-slide slide-2"></div>
       <div className="hero-slide slide-3"></div>
+      <div className="hero-slide slide-4"></div>
+      <div className="hero-slide slide-5"></div>
+
+
 
       <div className="hero-blue-overlay"></div>
 
