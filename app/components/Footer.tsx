@@ -76,15 +76,16 @@ export default function Footer() {
 
           <div className="footer-links">
             <a href="tel:7572316809">
-              (757) 231-6809
+              (757) 651-6371
             </a>
 
             <a href="mailto:info@laborsyncgroup.com">
-              info@laborsyncgroup.com
+              contact@laborsyncgroup.com
             </a>
 
             <p>
-              Hampton Roads, Virginia
+              2506 Jefferson Ave, Suite 206
+              Newport News, VA 23607
             </p>
           </div>
         </div>
