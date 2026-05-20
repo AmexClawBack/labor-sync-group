@@ -25,6 +25,14 @@ export default function ApplyForm() {
 
     setLoading(true);
 
+    const full_name = formData.get("full_name") as string;
+    const email = formData.get("email") as string;
+    const phone = formData.get("phone") as string;
+    const industry = formData.get("industry") as string;
+    const experience = formData.get("experience") as string;
+    const certifications = formData.get("certifications") as string;
+    const message = formData.get("message") as string;
+
     const resume = formData.get("resume") as File | null;
 
     let resumePath = "";
@@ -52,13 +60,13 @@ export default function ApplyForm() {
     const application = {
       job_id: jobId,
       job_slug: jobSlug || "general-application",
-      full_name: formData.get("full_name") as string,
-      email: formData.get("email") as string,
-      phone: formData.get("phone") as string,
-      industry: formData.get("industry") as string,
-      experience: formData.get("experience") as string,
-      certifications: formData.get("certifications") as string,
-      message: formData.get("message") as string,
+      full_name,
+      email,
+      phone,
+      industry,
+      experience,
+      certifications,
+      message,
       status: "New",
       resume_url: resumePath,
       resume_file_name: resumeFileName,
@@ -68,14 +76,46 @@ export default function ApplyForm() {
       .from("applications")
       .insert([application]);
 
-    setLoading(false);
-
     if (error) {
+      setLoading(false);
       alert(error.message);
       console.error("Application error:", error);
       return;
     }
 
+    try {
+      console.log("Sending notification...");
+
+      const notifyResponse = await fetch("/api/notify", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          type: jobSlug ? "application" : "resume",
+          full_name,
+          email,
+          phone,
+          industry,
+          message,
+          job_slug: jobSlug || "General Resume Submission",
+          resume_file_name: resumeFileName,
+        }),
+      });
+
+      const notifyData = await notifyResponse.json();
+
+      console.log("Notify response:", notifyData);
+
+      if (!notifyResponse.ok || !notifyData.success) {
+        alert("Application saved, but notification failed. Check console.");
+      }
+    } catch (notifyError) {
+      console.error("Notification error:", notifyError);
+      alert("Application saved, but notification failed. Check console.");
+    }
+
+    setLoading(false);
     form.reset();
     setSubmitted(true);
   }
@@ -132,12 +172,7 @@ export default function ApplyForm() {
         placeholder="Certifications / Licenses"
       />
 
-      <input
-        name="resume"
-        type="file"
-        accept=".pdf,.doc,.docx"
-        required
-      />
+      <input name="resume" type="file" accept=".pdf,.doc,.docx" required />
 
       <textarea
         name="message"
