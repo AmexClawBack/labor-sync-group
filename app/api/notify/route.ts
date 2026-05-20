@@ -16,17 +16,23 @@ export async function POST(req: Request) {
     console.log("NOTIFY BODY:", body);
 
     const emailResult = await resend.emails.send({
-      from: "Labor Sync Group <onboarding@resend.dev>",
-      to: process.env.ALERT_EMAIL!,
-      subject: "Test Notification - Labor Sync Group",
-      html: `
-        <h2>Test Notification</h2>
-        <p>This is a test notification from your website.</p>
-      `,
-    });
+  from: "Labor Sync Group <onboarding@resend.dev>",
+  to: process.env.ALERT_EMAIL!,
+  subject: "New Form Submission - Labor Sync Group",
+  html: `
+    <h2>You Have a New Form Submission</h2>
 
-    console.log("EMAIL RESULT:", emailResult);
+    <p>A new form submission has been received on the Labor Sync Group website.</p>
 
+    <p>Please log in to your admin dashboard to review the details.</p>
+
+    <p>
+      <a href="https://www.laborsyncgroup.com/admin">
+        Open Admin Dashboard
+      </a>
+    </p>
+  `,
+});
     const smsResult = await twilioClient.messages.create({
       body: "Test notification from Labor Sync Group website.",
       from: process.env.TWILIO_PHONE_NUMBER!,
