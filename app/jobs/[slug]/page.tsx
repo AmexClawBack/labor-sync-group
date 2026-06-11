@@ -95,7 +95,7 @@ export default async function PublicJobPostingPage({
 
           <div className="card">
             <h3>Requirements</h3>
-            <p>{job.requirements}</p>
+           <p style={{ whiteSpace: "pre-line" }}>{job.requirements}</p>
           </div>
         </div>
       </section>
