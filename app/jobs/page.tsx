@@ -1,6 +1,9 @@
 import PublicJobBoard from "@/app/components/PublicJobBoard";
 import { createClient } from "@/lib/supabase/index";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function JobsPage() {
   const supabase = createClient();
 

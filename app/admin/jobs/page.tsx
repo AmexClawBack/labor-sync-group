@@ -3,6 +3,9 @@ import AdminLogoutButton from "@/app/components/AdminLogoutButton";
 import { createClient } from "@/lib/supabase/index";
 import AdminNav from "@/app/components/AdminNav";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export const metadata = {
   title: "Manage Jobs | Labor Sync Group",
 };
